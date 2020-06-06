@@ -5,9 +5,7 @@
    [re-frame.core :as re-frame]
    [sekisei.events :as events]
    [sekisei.views :as views]
-   [sekisei.config :as config]
-   ))
-
+   [sekisei.config :as config]))
 
 (defn dev-setup []
   (when config/debug?

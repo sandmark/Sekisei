@@ -21,7 +21,6 @@
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
                                     "resources/public/css"]
 
-
   :garden {:builds [{:id           "screen"
                      :source-paths ["src/clj"]
                      :stylesheet   sekisei.css/screen
@@ -41,8 +40,7 @@
                                                :preloads [devtools.preload]}}
 
                                :devtools {:http-root "resources/public"
-                                          :http-port 8280
-                                          }}}}
+                                          :http-port 8280}}}}
 
   :aliases {"dev"          ["with-profile" "dev" "do"
                             ["shadow" "watch" "app"]]
@@ -60,8 +58,6 @@
    {:dependencies [[binaryage/devtools "1.0.2"]]
     :source-paths ["dev"]}
 
-   :prod {}
-
-}
+   :prod {}}
 
   :prep-tasks [["garden" "once"]])
