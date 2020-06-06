@@ -1,4 +1,5 @@
 (ns sekisei.db)
 
 (def default-db
-  {:name "re-frame"})
+  {:width  10
+   :height 10})

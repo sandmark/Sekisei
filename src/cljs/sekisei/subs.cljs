@@ -3,6 +3,11 @@
    [re-frame.core :as re-frame]))
 
 (re-frame/reg-sub
- ::name
+ ::width
  (fn [db]
-   (:name db)))
+   (:width db)))
+
+(re-frame/reg-sub
+ ::height
+ (fn [db]
+   (:height db)))
