@@ -47,21 +47,17 @@
                                   (>evt [::events/cell-move %]))}]))
 
 (defn letter-input [x y]
-  (let [cell-number    (<sub [::subs/cell-number x y])
-        focused-number (<sub [::subs/focused-number])
-        style          (<sub [::subs/cell-style cell-number focused-number])
-        value          (<sub [::subs/cell-letter cell-number])
-        disabled?      ((some-fn empty? nil? zero?) cell-number)]
+  (let [cell-number (<sub [::subs/cell-number x y])
+        value       (<sub [::subs/cell-letter cell-number])
+        disabled?   ((some-fn empty? nil? zero?) cell-number)]
     [:input {:type        "text"
              :disabled    disabled?
              :id          (db/cell-id x y)
-             :style       style
              :value       value
              :placeholder cell-number
              :on-key-down #(do (.persist %)
                                (>evt [::events/cell-move %]))
-             :on-focus    #(do (>evt [::events/focused-number cell-number])
-                               (>evt [::events/current-cell x y]))
+             :on-focus    #(>evt [::events/current-cell x y])
              :on-change   #(>evt [::events/set-letter cell-number (-> % .-target .-value)])}]))
 
 (defn puzzle-panel []
