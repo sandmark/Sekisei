@@ -11,3 +11,14 @@
  ::height
  (fn [db]
    (:height db)))
+
+(re-frame/reg-sub
+ ::width-height
+ (fn [db]
+   (select-keys db [:width :height])))
+
+(re-frame/reg-sub
+ ::current-cell
+ (fn [db]
+   (:current-cell db)))
+

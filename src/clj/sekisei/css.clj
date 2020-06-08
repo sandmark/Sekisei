@@ -5,10 +5,6 @@
 (g/defcssfn translate)
 (g/defcssfn rgba)
 
-(gs/defpseudoelement placeholder)
-
-(gs/defclass form-table)
-
 (g/defstyles screen
   #_[:div.container {:padding      "1em"
                      :position     :absolute
@@ -16,6 +12,13 @@
                      :left         "50%"
                      :margin-right "-50%"
                      :transform    (translate "-50%" "-50%")}]
+  [:.puzzle
+   [:table :tbody :tr :td {:margin  0
+                           :padding 0}]
+   [(gs/input (gs/attr= :type :text)) {:width   "20px"
+                                       :height  "20px"
+                                       :padding 0
+                                       :margin  0}]]
 
   [:.nav {:color            "white"
           :background-color "gray"
