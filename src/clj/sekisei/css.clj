@@ -18,6 +18,8 @@
                            :padding 0}]
    [(gs/input (gs/attr= :type :text)) {:font-family "monospace"
                                        :font-size   "20px"
+                                       :font-weight "bold"
+                                       :text-align "right"
                                        :width       "20px"
                                        :height      "20px"
                                        :padding     0
