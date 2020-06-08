@@ -5,20 +5,26 @@
 (g/defcssfn translate)
 (g/defcssfn rgba)
 
+(gs/defpseudoelement placeholder)
+
 (g/defstyles screen
-  #_[:div.container {:padding      "1em"
-                     :position     :absolute
-                     :top          "50%"
-                     :left         "50%"
-                     :margin-right "-50%"
-                     :transform    (translate "-50%" "-50%")}]
-  [:.puzzle
+  [:.puzzle {:padding      "1em"
+             :position     :absolute
+             :top          "50%"
+             :left         "50%"
+             :margin-right "-50%"
+             :transform    (translate "-50%" "-50%")}
    [:table :tbody :tr :td {:margin  0
                            :padding 0}]
-   [(gs/input (gs/attr= :type :text)) {:width   "20px"
-                                       :height  "20px"
-                                       :padding 0
-                                       :margin  0}]]
+   [(gs/input (gs/attr= :type :text)) {:font-family "monospace"
+                                       :font-size   "20px"
+                                       :width       "20px"
+                                       :height      "20px"
+                                       :padding     0
+                                       :margin      0}]
+   [placeholder {:color "silver"}]
+   [(gs/input (gs/attr :disabled)) {:background "gray"
+                                    :border     [["2px" "gray" "solid"]]}]]
 
   [:.nav {:color            "white"
           :background-color "gray"

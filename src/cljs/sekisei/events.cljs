@@ -24,12 +24,29 @@
    (assoc db [x y] val)))
 
 (re-frame/reg-event-db
+ ::set-letter
+ (fn [db [_ n letter]]
+   (assoc-in db [:numbers n] letter)))
+
+(re-frame/reg-event-db
  ::current-cell
  (fn [db [_ x y]]
    (assoc db :current-cell [x y])))
 
+(re-frame/reg-event-db
+ ::focused-number
+ (fn [db [_ n]]
+   (assoc db :focused-number n)))
+
+(re-frame/reg-event-db
+ ::toggle-mode
+ (fn [db _]
+   (update db :mode db/toggle-mode)))
+
 (defn focus [id]
-  (some->> id (.getElementById js/document) (.focus)))
+  (when-let [elm (.getElementById js/document id)]
+    (.focus elm)
+    (.select elm)))
 
 (defn focus-cell [e [x y]]
   (.preventDefault e)
@@ -41,8 +58,8 @@
    (let [[x y] (:current-cell db)]
      (focus-cell e
                  (case (.-key e)
-                   ("Left" "ArrowLeft")   [(dec x) y]
-                   ("Right" "ArrowRight") [(inc x) y]
-                   ("Up" "ArrowUp")       [x (dec y)]
-                   ("Down" "ArrowDown")   [x (inc y)]
+                   "ArrowLeft"  [(dec x) y]
+                   "ArrowRight" [(inc x) y]
+                   "ArrowUp"    [x (dec y)]
+                   "ArrowDown"  [x (inc y)]
                    nil)))))

@@ -22,3 +22,28 @@
  (fn [db]
    (:current-cell db)))
 
+(re-frame/reg-sub
+ ::focused-number
+ (fn [db]
+   (:focused-number db)))
+
+(re-frame/reg-sub
+ ::mode
+ (fn [db]
+   (:mode db)))
+
+(re-frame/reg-sub
+ ::cell-number
+ (fn [db [_ x y]]
+   (get db [x y])))
+
+(re-frame/reg-sub
+ ::cell-letter
+ (fn [db [_ n]]
+   (get-in db [:numbers n])))
+
+(re-frame/reg-sub
+ ::cell-style
+ (fn [_ [_ cell-number focused-number]]
+   (when (= cell-number focused-number)
+     {:color "red"})))
